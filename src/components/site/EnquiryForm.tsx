@@ -182,7 +182,7 @@ export function EnquiryForm({ defaultEventType = "", defaultServices = [], class
   );
 }
 
-function Field({ id, label, required, error, className, children }: { id: string; label: string; required?: boolean; error?: string; className?: string; children: React.ReactNode }) {
+function Field({ id, label, required, error, className, children }: { id: string; label: string; required?: boolean; error?: string | undefined; className?: string; children: React.ReactNode }) {
   return (
     <div className={className}>
       <label htmlFor={`enq-${id}`} className="mb-2 block text-sm font-semibold">

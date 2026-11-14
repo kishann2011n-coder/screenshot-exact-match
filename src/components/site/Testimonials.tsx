@@ -28,7 +28,7 @@ export function Testimonials() {
       </div>
     );
   }
-  const t = TESTIMONIALS[i];
+  const t = TESTIMONIALS[i] ?? TESTIMONIALS[0]!;
   return (
     <div className="relative rounded-[2rem] border border-ink-border bg-ink-soft/60 p-8 sm:p-14">
       <Quote className="h-10 w-10 text-gold" />

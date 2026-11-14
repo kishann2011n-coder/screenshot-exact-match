@@ -13,7 +13,7 @@ export type Photo = {
   position?: string;
 };
 
-const p = (id: string, alt: string, position?: string): Photo => ({ id, alt, position });
+const p = (id: string, alt: string, position?: string): Photo => (position ? { id, alt, position } : { id, alt });
 
 export const IMG = {
   mandap: p("1587271407850-8d438ca9fdf2", "Couple performing wedding rituals under a floral mandap in a candle-lit ballroom"),
@@ -67,12 +67,12 @@ export const IMG = {
 
 export const SAPNA_PHOTO: Photo = {
   id: "wikimedia-sapna-choudhary",
-  src: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Muharat-of-the-film-Dosti-Ke-Side-Effect-8.jpg",
+  src: "https://upload.wikimedia.org/wikipedia/commons/5/5a/Muharat-of-the-film-Dosti-Ke-Side-Effect-8_%28cropped%29.jpg",
   alt: "Sapna Choudhary at the muhurat of the film Dosti Ke Side Effects",
   credit: "Bollywood Hungama",
-  creditUrl: "https://commons.wikimedia.org/wiki/File:Muharat-of-the-film-Dosti-Ke-Side-Effect-8.jpg",
+  creditUrl: "https://commons.wikimedia.org/wiki/File:Muharat-of-the-film-Dosti-Ke-Side-Effect-8_(cropped).jpg",
   license: "CC BY 3.0",
-  position: "50% 20%",
+  position: "50% 15%",
 };
 
 export function photoUrl(photo: Photo, width = 1200, height?: number): string {

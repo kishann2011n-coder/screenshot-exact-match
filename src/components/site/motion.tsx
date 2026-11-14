@@ -107,7 +107,7 @@ export function Magnetic({ children, className, strength = 0.35 }: { children: R
   );
 }
 
-export function Counter({ to, suffix = "", className }: { to: number; suffix?: string; className?: string }) {
+export function Counter({ to, suffix = "", className }: { to: number; suffix?: string | undefined; className?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const reduce = useReducedMotion();

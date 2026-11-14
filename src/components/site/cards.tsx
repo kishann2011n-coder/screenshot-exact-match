@@ -39,7 +39,7 @@ export function ServiceCard({ service, className, size = "md" }: { service: Serv
 export function ArtistCard({ artist }: { artist: Artist }) {
   return (
     <TiltCard className="h-full">
-      <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border bg-card shadow-soft">
+      <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border bg-card text-card-foreground shadow-soft">
         <Link to="/artists/$slug" params={{ slug: artist.slug }} data-cursor="Profile" className="relative block aspect-[4/5] overflow-hidden">
           {artist.image ? (
             <Photo photo={artist.image} width={700} className="img-zoom group-hover:scale-105" />

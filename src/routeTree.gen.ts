@@ -11,13 +11,17 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CorporateEventsRouteImport } from './routes/corporate-events'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as LiveShowsRouteImport } from './routes/live-shows'
+import { Route as PlanYourEventRouteImport } from './routes/plan-your-event'
 import { Route as WeddingsRouteImport } from './routes/weddings'
 import { Route as ArtistsIndexRouteImport } from './routes/artists.index'
 import { Route as ArtistsSlugRouteImport } from './routes/artists.$slug'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
@@ -29,6 +33,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CorporateEventsRoute = CorporateEventsRouteImport.update({
@@ -51,6 +60,11 @@ const LiveShowsRoute = LiveShowsRouteImport.update({
   path: '/live-shows',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlanYourEventRoute = PlanYourEventRouteImport.update({
+  id: '/plan-your-event',
+  path: '/plan-your-event',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WeddingsRoute = WeddingsRouteImport.update({
   id: '/weddings',
   path: '/weddings',
@@ -64,6 +78,16 @@ const ArtistsIndexRoute = ArtistsIndexRouteImport.update({
 const ArtistsSlugRoute = ArtistsSlugRouteImport.update({
   id: '/artists/$slug',
   path: '/artists/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
@@ -80,41 +104,53 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/corporate-events': typeof CorporateEventsRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/live-shows': typeof LiveShowsRoute
+  '/plan-your-event': typeof PlanYourEventRoute
   '/weddings': typeof WeddingsRoute
   '/artists/$slug': typeof ArtistsSlugRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/artists/': typeof ArtistsIndexRoute
+  '/blog/': typeof BlogIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/corporate-events': typeof CorporateEventsRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/live-shows': typeof LiveShowsRoute
+  '/plan-your-event': typeof PlanYourEventRoute
   '/weddings': typeof WeddingsRoute
   '/artists/$slug': typeof ArtistsSlugRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/artists': typeof ArtistsIndexRoute
+  '/blog': typeof BlogIndexRoute
   '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/corporate-events': typeof CorporateEventsRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/live-shows': typeof LiveShowsRoute
+  '/plan-your-event': typeof PlanYourEventRoute
   '/weddings': typeof WeddingsRoute
   '/artists/$slug': typeof ArtistsSlugRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/artists/': typeof ArtistsIndexRoute
+  '/blog/': typeof BlogIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
@@ -122,54 +158,70 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/contact'
     | '/corporate-events'
     | '/faq'
     | '/gallery'
     | '/live-shows'
+    | '/plan-your-event'
     | '/weddings'
     | '/artists/$slug'
+    | '/blog/$slug'
     | '/services/$slug'
     | '/artists/'
+    | '/blog/'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/contact'
     | '/corporate-events'
     | '/faq'
     | '/gallery'
     | '/live-shows'
+    | '/plan-your-event'
     | '/weddings'
     | '/artists/$slug'
+    | '/blog/$slug'
     | '/services/$slug'
     | '/artists'
+    | '/blog'
     | '/services'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/contact'
     | '/corporate-events'
     | '/faq'
     | '/gallery'
     | '/live-shows'
+    | '/plan-your-event'
     | '/weddings'
     | '/artists/$slug'
+    | '/blog/$slug'
     | '/services/$slug'
     | '/artists/'
+    | '/blog/'
     | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
   CorporateEventsRoute: typeof CorporateEventsRoute
   FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
   LiveShowsRoute: typeof LiveShowsRoute
+  PlanYourEventRoute: typeof PlanYourEventRoute
   WeddingsRoute: typeof WeddingsRoute
   ArtistsSlugRoute: typeof ArtistsSlugRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ArtistsIndexRoute: typeof ArtistsIndexRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
@@ -187,6 +239,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/corporate-events': {
@@ -217,6 +276,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LiveShowsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/plan-your-event': {
+      id: '/plan-your-event'
+      path: '/plan-your-event'
+      fullPath: '/plan-your-event'
+      preLoaderRoute: typeof PlanYourEventRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/weddings': {
       id: '/weddings'
       path: '/weddings'
@@ -236,6 +302,20 @@ declare module '@tanstack/react-router' {
       path: '/artists/$slug'
       fullPath: '/artists/$slug'
       preLoaderRoute: typeof ArtistsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/': {
@@ -258,14 +338,18 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
   CorporateEventsRoute: CorporateEventsRoute,
   FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
   LiveShowsRoute: LiveShowsRoute,
+  PlanYourEventRoute: PlanYourEventRoute,
   WeddingsRoute: WeddingsRoute,
   ArtistsSlugRoute: ArtistsSlugRoute,
+  BlogSlugRoute: BlogSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ArtistsIndexRoute: ArtistsIndexRoute,
+  BlogIndexRoute: BlogIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport

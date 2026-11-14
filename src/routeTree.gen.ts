@@ -10,7 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as CorporateEventsRouteImport } from './routes/corporate-events'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as LiveShowsRouteImport } from './routes/live-shows'
 import { Route as WeddingsRouteImport } from './routes/weddings'
 import { Route as ArtistsIndexRouteImport } from './routes/artists.index'
@@ -23,9 +26,24 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CorporateEventsRoute = CorporateEventsRouteImport.update({
   id: '/corporate-events',
   path: '/corporate-events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LiveShowsRoute = LiveShowsRouteImport.update({
@@ -61,7 +79,10 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/corporate-events': typeof CorporateEventsRoute
+  '/faq': typeof FaqRoute
+  '/gallery': typeof GalleryRoute
   '/live-shows': typeof LiveShowsRoute
   '/weddings': typeof WeddingsRoute
   '/artists/$slug': typeof ArtistsSlugRoute
@@ -71,7 +92,10 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/corporate-events': typeof CorporateEventsRoute
+  '/faq': typeof FaqRoute
+  '/gallery': typeof GalleryRoute
   '/live-shows': typeof LiveShowsRoute
   '/weddings': typeof WeddingsRoute
   '/artists/$slug': typeof ArtistsSlugRoute
@@ -82,7 +106,10 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/corporate-events': typeof CorporateEventsRoute
+  '/faq': typeof FaqRoute
+  '/gallery': typeof GalleryRoute
   '/live-shows': typeof LiveShowsRoute
   '/weddings': typeof WeddingsRoute
   '/artists/$slug': typeof ArtistsSlugRoute
@@ -94,7 +121,10 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/corporate-events'
+    | '/faq'
+    | '/gallery'
     | '/live-shows'
     | '/weddings'
     | '/artists/$slug'
@@ -104,7 +134,10 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/corporate-events'
+    | '/faq'
+    | '/gallery'
     | '/live-shows'
     | '/weddings'
     | '/artists/$slug'
@@ -114,7 +147,10 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/corporate-events'
+    | '/faq'
+    | '/gallery'
     | '/live-shows'
     | '/weddings'
     | '/artists/$slug'
@@ -125,7 +161,10 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   CorporateEventsRoute: typeof CorporateEventsRoute
+  FaqRoute: typeof FaqRoute
+  GalleryRoute: typeof GalleryRoute
   LiveShowsRoute: typeof LiveShowsRoute
   WeddingsRoute: typeof WeddingsRoute
   ArtistsSlugRoute: typeof ArtistsSlugRoute
@@ -143,11 +182,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/corporate-events': {
       id: '/corporate-events'
       path: '/corporate-events'
       fullPath: '/corporate-events'
       preLoaderRoute: typeof CorporateEventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/live-shows': {
@@ -197,7 +257,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   CorporateEventsRoute: CorporateEventsRoute,
+  FaqRoute: FaqRoute,
+  GalleryRoute: GalleryRoute,
   LiveShowsRoute: LiveShowsRoute,
   WeddingsRoute: WeddingsRoute,
   ArtistsSlugRoute: ArtistsSlugRoute,

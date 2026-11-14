@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CorporateEventsRouteImport } from './routes/corporate-events'
+import { Route as LiveShowsRouteImport } from './routes/live-shows'
 import { Route as WeddingsRouteImport } from './routes/weddings'
 import { Route as ArtistsIndexRouteImport } from './routes/artists.index'
 import { Route as ArtistsSlugRouteImport } from './routes/artists.$slug'
@@ -19,6 +21,16 @@ import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CorporateEventsRoute = CorporateEventsRouteImport.update({
+  id: '/corporate-events',
+  path: '/corporate-events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LiveShowsRoute = LiveShowsRouteImport.update({
+  id: '/live-shows',
+  path: '/live-shows',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WeddingsRoute = WeddingsRouteImport.update({
@@ -49,6 +61,8 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/corporate-events': typeof CorporateEventsRoute
+  '/live-shows': typeof LiveShowsRoute
   '/weddings': typeof WeddingsRoute
   '/artists/$slug': typeof ArtistsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -57,6 +71,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/corporate-events': typeof CorporateEventsRoute
+  '/live-shows': typeof LiveShowsRoute
   '/weddings': typeof WeddingsRoute
   '/artists/$slug': typeof ArtistsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -66,6 +82,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/corporate-events': typeof CorporateEventsRoute
+  '/live-shows': typeof LiveShowsRoute
   '/weddings': typeof WeddingsRoute
   '/artists/$slug': typeof ArtistsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -76,6 +94,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/corporate-events'
+    | '/live-shows'
     | '/weddings'
     | '/artists/$slug'
     | '/services/$slug'
@@ -84,6 +104,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/corporate-events'
+    | '/live-shows'
     | '/weddings'
     | '/artists/$slug'
     | '/services/$slug'
@@ -92,6 +114,8 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/corporate-events'
+    | '/live-shows'
     | '/weddings'
     | '/artists/$slug'
     | '/services/$slug'
@@ -101,6 +125,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CorporateEventsRoute: typeof CorporateEventsRoute
+  LiveShowsRoute: typeof LiveShowsRoute
   WeddingsRoute: typeof WeddingsRoute
   ArtistsSlugRoute: typeof ArtistsSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
@@ -115,6 +141,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/corporate-events': {
+      id: '/corporate-events'
+      path: '/corporate-events'
+      fullPath: '/corporate-events'
+      preLoaderRoute: typeof CorporateEventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/live-shows': {
+      id: '/live-shows'
+      path: '/live-shows'
+      fullPath: '/live-shows'
+      preLoaderRoute: typeof LiveShowsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/weddings': {
@@ -157,6 +197,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CorporateEventsRoute: CorporateEventsRoute,
+  LiveShowsRoute: LiveShowsRoute,
   WeddingsRoute: WeddingsRoute,
   ArtistsSlugRoute: ArtistsSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,

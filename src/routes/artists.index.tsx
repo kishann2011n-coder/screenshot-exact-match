@@ -40,7 +40,7 @@ function ArtistsPage() {
     const t = normalise(q);
     return ARTISTS.filter(
       (a) =>
-        (!category || a.categories.includes(category as never)) &&
+        (!category || a.categories.some((c) => c === category)) &&
         (!t || normalise([a.name, a.role, a.summary, ...a.knownFor, ...a.categories].join(" ")).includes(t)),
     );
   }, [category, q]);

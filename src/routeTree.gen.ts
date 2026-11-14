@@ -10,33 +10,167 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as CorporateEventsRouteImport } from './routes/corporate-events'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as LiveShowsRouteImport } from './routes/live-shows'
+import { Route as WeddingsRouteImport } from './routes/weddings'
+import { Route as ArtistsIndexRouteImport } from './routes/artists.index'
+import { Route as ArtistsSlugRouteImport } from './routes/artists.$slug'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CorporateEventsRoute = CorporateEventsRouteImport.update({
+  id: '/corporate-events',
+  path: '/corporate-events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LiveShowsRoute = LiveShowsRouteImport.update({
+  id: '/live-shows',
+  path: '/live-shows',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WeddingsRoute = WeddingsRouteImport.update({
+  id: '/weddings',
+  path: '/weddings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArtistsIndexRoute = ArtistsIndexRouteImport.update({
+  id: '/artists/',
+  path: '/artists/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArtistsSlugRoute = ArtistsSlugRouteImport.update({
+  id: '/artists/$slug',
+  path: '/artists/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesSlugRoute = ServicesSlugRouteImport.update({
+  id: '/services/$slug',
+  path: '/services/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/corporate-events': typeof CorporateEventsRoute
+  '/faq': typeof FaqRoute
+  '/gallery': typeof GalleryRoute
+  '/live-shows': typeof LiveShowsRoute
+  '/weddings': typeof WeddingsRoute
+  '/artists/$slug': typeof ArtistsSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/artists/': typeof ArtistsIndexRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/corporate-events': typeof CorporateEventsRoute
+  '/faq': typeof FaqRoute
+  '/gallery': typeof GalleryRoute
+  '/live-shows': typeof LiveShowsRoute
+  '/weddings': typeof WeddingsRoute
+  '/artists/$slug': typeof ArtistsSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/artists': typeof ArtistsIndexRoute
+  '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/corporate-events': typeof CorporateEventsRoute
+  '/faq': typeof FaqRoute
+  '/gallery': typeof GalleryRoute
+  '/live-shows': typeof LiveShowsRoute
+  '/weddings': typeof WeddingsRoute
+  '/artists/$slug': typeof ArtistsSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/artists/': typeof ArtistsIndexRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/corporate-events'
+    | '/faq'
+    | '/gallery'
+    | '/live-shows'
+    | '/weddings'
+    | '/artists/$slug'
+    | '/services/$slug'
+    | '/artists/'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/corporate-events'
+    | '/faq'
+    | '/gallery'
+    | '/live-shows'
+    | '/weddings'
+    | '/artists/$slug'
+    | '/services/$slug'
+    | '/artists'
+    | '/services'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/corporate-events'
+    | '/faq'
+    | '/gallery'
+    | '/live-shows'
+    | '/weddings'
+    | '/artists/$slug'
+    | '/services/$slug'
+    | '/artists/'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CorporateEventsRoute: typeof CorporateEventsRoute
+  FaqRoute: typeof FaqRoute
+  GalleryRoute: typeof GalleryRoute
+  LiveShowsRoute: typeof LiveShowsRoute
+  WeddingsRoute: typeof WeddingsRoute
+  ArtistsSlugRoute: typeof ArtistsSlugRoute
+  ServicesSlugRoute: typeof ServicesSlugRoute
+  ArtistsIndexRoute: typeof ArtistsIndexRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +182,91 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/corporate-events': {
+      id: '/corporate-events'
+      path: '/corporate-events'
+      fullPath: '/corporate-events'
+      preLoaderRoute: typeof CorporateEventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/live-shows': {
+      id: '/live-shows'
+      path: '/live-shows'
+      fullPath: '/live-shows'
+      preLoaderRoute: typeof LiveShowsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/weddings': {
+      id: '/weddings'
+      path: '/weddings'
+      fullPath: '/weddings'
+      preLoaderRoute: typeof WeddingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/artists/': {
+      id: '/artists/'
+      path: '/artists'
+      fullPath: '/artists/'
+      preLoaderRoute: typeof ArtistsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/artists/$slug': {
+      id: '/artists/$slug'
+      path: '/artists/$slug'
+      fullPath: '/artists/$slug'
+      preLoaderRoute: typeof ArtistsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/$slug': {
+      id: '/services/$slug'
+      path: '/services/$slug'
+      fullPath: '/services/$slug'
+      preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CorporateEventsRoute: CorporateEventsRoute,
+  FaqRoute: FaqRoute,
+  GalleryRoute: GalleryRoute,
+  LiveShowsRoute: LiveShowsRoute,
+  WeddingsRoute: WeddingsRoute,
+  ArtistsSlugRoute: ArtistsSlugRoute,
+  ServicesSlugRoute: ServicesSlugRoute,
+  ArtistsIndexRoute: ArtistsIndexRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

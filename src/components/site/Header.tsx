@@ -153,7 +153,7 @@ export function Header() {
               animate={{ opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)" }}
               exit={{ opacity: 0, y: -8, clipPath: "inset(0 0 100% 0)" }}
               transition={{ duration: 0.45, ease: EASE }}
-              className="absolute inset-x-0 hidden border-b border-ink-border/60 bg-ink/97 backdrop-blur-xl xl:block"
+              className="absolute inset-x-0 hidden border-b border-ink-border/60 bg-ink xl:block"
               onMouseEnter={() => openMega(mega)}
               onMouseLeave={scheduleClose}
             >

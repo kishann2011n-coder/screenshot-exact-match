@@ -28,3 +28,11 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Business details, services, artists, gallery, FAQs, stats and testimonials live in `src/data/*`; components read from there so content stays editable in one place.
+- All enquiries hand off to WhatsApp via `src/lib/whatsapp.ts` (no backend); never show a "submitted" state unless WhatsApp was actually opened.
+- Search is client-side over `src/lib/search.ts`'s index built from `src/data`; add new content to data files and it becomes searchable.
+- Photos are referenced through `src/data/images.ts` (Unsplash IDs or licensed Wikimedia URLs with credit); no AI-generated imagery.
+- Page metadata is built with `seo()` from `src/lib/seo.ts`; canonical/og:url and breadcrumb schema only emit once `SITE.siteUrl` is set.
+- Business rules are covered by `src/test/business-rules.test.ts`; update it when contact numbers, form rules or honesty rules change.

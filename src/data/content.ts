@@ -97,11 +97,18 @@ export const PROCESS = [
 ];
 
 /* ── Featured event formats (homepage) ───────────────────────── */
-export const FEATURED_EVENTS = [
-  { title: "Weddings", text: "Haldi to reception, every function.", photo: IMG.reception, to: "/weddings" as const },
-  { title: "Corporate Events", text: "Annual days, launches & conferences.", photo: IMG.conference, to: "/corporate-events" as const },
-  { title: "Celebrity Shows", text: "Bollywood, Haryanvi & Bhojpuri stars.", photo: IMG.concert, to: "/live-shows" as const },
-  { title: "Stage Performances", text: "Dance, music & full productions.", photo: IMG.stageDancers, to: "/services/$slug" as const, slug: "stage-shows" },
-  { title: "Birthday Celebrations", text: "Themes, cakes & entertainment.", photo: IMG.cake, to: "/services/$slug" as const, slug: "birthday-parties" },
-  { title: "Cultural Events", text: "Pujas, jagrans & festivals.", photo: IMG.holi, to: "/services/$slug" as const, slug: "religious-events" },
+export type FeaturedEvent = {
+  title: string;
+  text: string;
+  photo: Photo;
+  page?: "/weddings" | "/corporate-events" | "/live-shows";
+  slug?: string;
+};
+export const FEATURED_EVENTS: FeaturedEvent[] = [
+  { title: "Weddings", text: "Haldi to reception, every function.", photo: IMG.reception, page: "/weddings" },
+  { title: "Corporate Events", text: "Annual days, launches & conferences.", photo: IMG.conference, page: "/corporate-events" },
+  { title: "Celebrity Shows", text: "Bollywood, Haryanvi & Bhojpuri stars.", photo: IMG.concert, page: "/live-shows" },
+  { title: "Stage Performances", text: "Dance, music & full productions.", photo: IMG.stageDancers, slug: "stage-shows" },
+  { title: "Birthday Celebrations", text: "Themes, cakes & entertainment.", photo: IMG.cake, slug: "birthday-parties" },
+  { title: "Cultural Events", text: "Pujas, jagrans & festivals.", photo: IMG.holi, slug: "religious-events" },
 ];

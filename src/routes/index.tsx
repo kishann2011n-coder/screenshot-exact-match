@@ -314,10 +314,10 @@ function FeaturedEvents() {
             );
             return (
               <Reveal key={e.title} delay={n * 0.06} className={cn("h-full", span)}>
-                {"slug" in e && e.slug ? (
-                  <Link to="/services/$slug" params={{ slug: e.slug }} data-cursor="Explore" className="group relative block h-full overflow-hidden rounded-2xl">{inner}</Link>
+                {e.page ? (
+                  <Link to={e.page} data-cursor="Explore" className="group relative block h-full overflow-hidden rounded-2xl">{inner}</Link>
                 ) : (
-                  <Link to={e.to as "/weddings" | "/corporate-events" | "/live-shows"} data-cursor="Explore" className="group relative block h-full overflow-hidden rounded-2xl">{inner}</Link>
+                  <Link to="/services/$slug" params={{ slug: e.slug ?? "" }} data-cursor="Explore" className="group relative block h-full overflow-hidden rounded-2xl">{inner}</Link>
                 )}
               </Reveal>
             );

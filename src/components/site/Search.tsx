@@ -3,14 +3,48 @@ import { useId, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, MapPin, MessageCircle, Search as SearchIcon, X } from "lucide-react";
 import { Photo } from "./Photo";
-import { SCOPES, SUGGESTIONS, search, type SearchItem, type SearchScope } from "@/lib/search";
+import { SCOPES, SUGGESTIONS, search, type SearchItem, type SearchLink, type SearchScope } from "@/lib/search";
 import { availabilityMessage, waLink } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
+
+export function ItemLink({ link, className, children }: { link: SearchLink; className?: string; children: React.ReactNode }) {
+  switch (link.to) {
+    case "/services/$slug":
+      return <Link to="/services/$slug" params={link.params} className={className}>{children}</Link>;
+    case "/artists/$slug":
+      return <Link to="/artists/$slug" params={link.params} className={className}>{children}</Link>;
+    case "/blog/$slug":
+      return <Link to="/blog/$slug" params={link.params} className={className}>{children}</Link>;
+    case "/artists":
+      return <Link to="/artists" search={link.search} className={className}>{children}</Link>;
+    case "/services":
+      return <Link to="/services" search={link.search} className={className}>{children}</Link>;
+  }
+}
+
+function useGoTo() {
+  const navigate = useNavigate();
+  return (link: SearchLink) => {
+    switch (link.to) {
+      case "/services/$slug":
+        return navigate({ to: "/services/$slug", params: link.params });
+      case "/artists/$slug":
+        return navigate({ to: "/artists/$slug", params: link.params });
+      case "/blog/$slug":
+        return navigate({ to: "/blog/$slug", params: link.params });
+      case "/artists":
+        return navigate({ to: "/artists", search: link.search });
+      case "/services":
+        return navigate({ to: "/services", search: link.search });
+    }
+  };
+}
 
 const HERO_SCOPES: SearchScope[] = ["all", "event-management", "artists", "entertainment", "dance-music", "decor-catering"];
 
 export function SearchPanel({ className }: { className?: string }) {
   const navigate = useNavigate();
+  const goTo = useGoTo();
   const [scope, setScope] = useState<SearchScope>("all");
   const [q, setQ] = useState("");
   const [city, setCity] = useState("");
@@ -20,7 +54,7 @@ export function SearchPanel({ className }: { className?: string }) {
   const listId = useId();
 
   const results = useMemo(() => (q.trim() ? search(q, scope).slice(0, 6) : []), [q, scope]);
-  const open = focused && (q.trim().length > 0 || true);
+  const open = focused;
 
   const submit = (query = q, sc = scope) => {
     navigate({ to: "/search", search: { q: query.trim(), scope: sc, city: city.trim() || undefined } });
@@ -56,7 +90,7 @@ export function SearchPanel({ className }: { className?: string }) {
         onSubmit={(e) => {
           e.preventDefault();
           if (activeIdx >= 0 && results[activeIdx]) {
-            navigate(results[activeIdx].link as never);
+            goTo(results[activeIdx].link);
             return;
           }
           submit();
@@ -134,13 +168,13 @@ export function SearchPanel({ className }: { className?: string }) {
               <ul role="listbox" className="max-h-[22rem] overflow-y-auto p-2">
                 {results.map((r, i) => (
                   <li key={r.id} role="option" aria-selected={i === activeIdx}>
-                    <Link {...(r.link as never)} className={cn("flex items-center gap-4 rounded-xl p-2 transition", i === activeIdx ? "bg-secondary" : "hover:bg-secondary")}>
+                    <ItemLink link={r.link} className={cn("flex items-center gap-4 rounded-xl p-2 transition", i === activeIdx ? "bg-secondary" : "hover:bg-secondary")}>
                       <div className="h-12 w-14 shrink-0 overflow-hidden rounded-lg bg-muted">{r.photo && <Photo photo={r.photo} width={160} />}</div>
                       <div className="min-w-0">
                         <p className="truncate font-semibold">{r.title}</p>
                         <p className="truncate text-xs text-muted-foreground">{r.kind} · {r.group}</p>
                       </div>
-                    </Link>
+                    </ItemLink>
                   </li>
                 ))}
                 <li>
@@ -167,7 +201,7 @@ export function SearchPanel({ className }: { className?: string }) {
 
 export function ResultCard({ item }: { item: SearchItem }) {
   return (
-    <Link {...(item.link as never)} className="group flex h-full flex-col overflow-hidden rounded-2xl border bg-card shadow-soft transition hover:-translate-y-1 hover:shadow-lift">
+    <ItemLink link={item.link} className="group flex h-full flex-col overflow-hidden rounded-2xl border bg-card shadow-soft transition hover:-translate-y-1 hover:shadow-lift">
       <div className="aspect-[16/10] overflow-hidden bg-muted">{item.photo && <Photo photo={item.photo} width={700} sizes="(min-width:1024px) 33vw, 100vw" className="img-zoom group-hover:scale-105" />}</div>
       <div className="flex flex-1 flex-col p-5">
         <p className="eyebrow text-primary">{item.kind} · {item.group}</p>
@@ -175,7 +209,7 @@ export function ResultCard({ item }: { item: SearchItem }) {
         <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{item.subtitle}</p>
         <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-semibold text-primary">Open <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></span>
       </div>
-    </Link>
+    </ItemLink>
   );
 }
 

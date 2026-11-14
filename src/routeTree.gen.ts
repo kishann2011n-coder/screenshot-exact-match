@@ -16,7 +16,9 @@ import { Route as CorporateEventsRouteImport } from './routes/corporate-events'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as LiveShowsRouteImport } from './routes/live-shows'
+import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as PlanYourEventRouteImport } from './routes/plan-your-event'
+import { Route as SearchRouteImport } from './routes/search'
 import { Route as WeddingsRouteImport } from './routes/weddings'
 import { Route as ArtistsIndexRouteImport } from './routes/artists.index'
 import { Route as ArtistsSlugRouteImport } from './routes/artists.$slug'
@@ -60,9 +62,19 @@ const LiveShowsRoute = LiveShowsRouteImport.update({
   path: '/live-shows',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PartnerRoute = PartnerRouteImport.update({
+  id: '/partner',
+  path: '/partner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlanYourEventRoute = PlanYourEventRouteImport.update({
   id: '/plan-your-event',
   path: '/plan-your-event',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WeddingsRoute = WeddingsRouteImport.update({
@@ -109,7 +121,9 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/live-shows': typeof LiveShowsRoute
+  '/partner': typeof PartnerRoute
   '/plan-your-event': typeof PlanYourEventRoute
+  '/search': typeof SearchRoute
   '/weddings': typeof WeddingsRoute
   '/artists/$slug': typeof ArtistsSlugRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -126,7 +140,9 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/live-shows': typeof LiveShowsRoute
+  '/partner': typeof PartnerRoute
   '/plan-your-event': typeof PlanYourEventRoute
+  '/search': typeof SearchRoute
   '/weddings': typeof WeddingsRoute
   '/artists/$slug': typeof ArtistsSlugRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -144,7 +160,9 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/live-shows': typeof LiveShowsRoute
+  '/partner': typeof PartnerRoute
   '/plan-your-event': typeof PlanYourEventRoute
+  '/search': typeof SearchRoute
   '/weddings': typeof WeddingsRoute
   '/artists/$slug': typeof ArtistsSlugRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -163,7 +181,9 @@ export interface FileRouteTypes {
     | '/faq'
     | '/gallery'
     | '/live-shows'
+    | '/partner'
     | '/plan-your-event'
+    | '/search'
     | '/weddings'
     | '/artists/$slug'
     | '/blog/$slug'
@@ -180,7 +200,9 @@ export interface FileRouteTypes {
     | '/faq'
     | '/gallery'
     | '/live-shows'
+    | '/partner'
     | '/plan-your-event'
+    | '/search'
     | '/weddings'
     | '/artists/$slug'
     | '/blog/$slug'
@@ -197,7 +219,9 @@ export interface FileRouteTypes {
     | '/faq'
     | '/gallery'
     | '/live-shows'
+    | '/partner'
     | '/plan-your-event'
+    | '/search'
     | '/weddings'
     | '/artists/$slug'
     | '/blog/$slug'
@@ -215,7 +239,9 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
   LiveShowsRoute: typeof LiveShowsRoute
+  PartnerRoute: typeof PartnerRoute
   PlanYourEventRoute: typeof PlanYourEventRoute
+  SearchRoute: typeof SearchRoute
   WeddingsRoute: typeof WeddingsRoute
   ArtistsSlugRoute: typeof ArtistsSlugRoute
   BlogSlugRoute: typeof BlogSlugRoute
@@ -276,11 +302,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LiveShowsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/partner': {
+      id: '/partner'
+      path: '/partner'
+      fullPath: '/partner'
+      preLoaderRoute: typeof PartnerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/plan-your-event': {
       id: '/plan-your-event'
       path: '/plan-your-event'
       fullPath: '/plan-your-event'
       preLoaderRoute: typeof PlanYourEventRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/weddings': {
@@ -343,7 +383,9 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
   LiveShowsRoute: LiveShowsRoute,
+  PartnerRoute: PartnerRoute,
   PlanYourEventRoute: PlanYourEventRoute,
+  SearchRoute: SearchRoute,
   WeddingsRoute: WeddingsRoute,
   ArtistsSlugRoute: ArtistsSlugRoute,
   BlogSlugRoute: BlogSlugRoute,

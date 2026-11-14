@@ -13,7 +13,7 @@ export type Photo = {
   position?: string;
 };
 
-const p = (id: string, alt: string, position?: string): Photo => ({ id, alt, position });
+const p = (id: string, alt: string, position?: string): Photo => (position ? { id, alt, position } : { id, alt });
 
 export const IMG = {
   mandap: p("1587271407850-8d438ca9fdf2", "Couple performing wedding rituals under a floral mandap in a candle-lit ballroom"),

@@ -20,6 +20,7 @@ export const Route = createFileRoute("/blog/")({
 
 function BlogIndex() {
   const [lead, ...rest] = POSTS;
+  if (!lead) return null;
   return (
     <>
       <PageHero eyebrow="Knowledge centre" title="Guides for planning better celebrations" photo={IMG.mandapOutdoor} crumbs={[{ label: "Home", to: "/" }, { label: "Knowledge Centre" }]} />

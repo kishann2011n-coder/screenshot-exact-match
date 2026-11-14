@@ -104,7 +104,7 @@ function Hero() {
             exit={{ opacity: 0 }}
             transition={{ opacity: { duration: 1.4 }, scale: { duration: 8, ease: "linear" } }}
           >
-            <Photo photo={HERO_SLIDES[i].photo} priority={i === 0} sizes="100vw" width={1920} />
+            <Photo photo={(HERO_SLIDES[i] ?? HERO_SLIDES[0]!).photo} priority={i === 0} sizes="100vw" width={1920} />
           </motion.div>
         </AnimatePresence>
       </motion.div>

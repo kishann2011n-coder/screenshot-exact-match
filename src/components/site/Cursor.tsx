@@ -26,9 +26,9 @@ export function Cursor() {
       if (!el) {
         setVariant("default");
         setLabel("");
-      } else if (el.dataset.cursor) {
+      } else if (el.dataset["cursor"]) {
         setVariant("media");
-        setLabel(el.dataset.cursor);
+        setLabel(el.dataset["cursor"]);
       } else {
         setVariant("link");
         setLabel("");

@@ -9,7 +9,7 @@ export const SITE = {
   tagline: "Events · Entertainment · Celebrations",
   description:
     "Gauri Entertainment is a Delhi-based event management and entertainment company — weddings, corporate events, celebrity live shows, artist booking, dance groups, decoration and catering.",
-  siteUrl: "",
+  siteUrl: "" as string,
   address: {
     street: "118.2, East Moti Bagh, Sarai Rohilla",
     city: "Delhi",

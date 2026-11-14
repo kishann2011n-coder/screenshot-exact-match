@@ -26,7 +26,7 @@ function SearchPage() {
   const { q = "", scope = "all", city = "" } = Route.useSearch();
   const navigate = Route.useNavigate();
   const results = useMemo(() => search(q, scope), [q, scope]);
-  const update = (patch: { q?: string; scope?: SearchScope; city?: string }) =>
+  const update = (patch: { q?: string | undefined; scope?: SearchScope | undefined; city?: string | undefined }) =>
     navigate({ search: (s) => ({ ...s, ...patch }), replace: true });
 
   return (

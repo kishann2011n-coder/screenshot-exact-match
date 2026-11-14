@@ -5,13 +5,14 @@ type SeoInput = {
   title: string;
   description: string;
   path: string;
-  image?: Photo;
+  image?: Photo | undefined;
   type?: "website" | "article" | "profile";
   noindex?: boolean;
 };
 
 export function absoluteUrl(path: string) {
-  return SITE.siteUrl ? `${SITE.siteUrl.replace(/\/$/, "")}${path}` : "";
+  const base: string = SITE.siteUrl;
+  return base ? `${base.replace(/\/$/, "")}${path}` : "";
 }
 
 export function seo({ title, description, path, image, type = "website", noindex }: SeoInput) {
@@ -67,7 +68,7 @@ export function organizationLd() {
 }
 
 export function breadcrumbLd(items: { name: string; path: string }[]) {
-  if (!SITE.siteUrl) return null;
+  if (!absoluteUrl("/")) return null;
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

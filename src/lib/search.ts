@@ -30,7 +30,7 @@ export type SearchItem = {
   subtitle: string;
   group: string;
   keywords: string[];
-  photo?: Photo;
+  photo?: Photo | undefined;
   link: SearchLink;
 };
 

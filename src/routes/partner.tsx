@@ -24,12 +24,12 @@ const field = "h-12 w-full rounded-xl border border-input bg-card px-4 text-base
 
 function PartnerPage() {
   const [v, setV] = useState({ name: "", business: "", phone: "", type: "", city: "", portfolio: "", about: "" });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<{ name?: string; phone?: string; type?: string }>({});
   const [done, setDone] = useState<null | { ok: boolean; href: string }>(null);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const errs: Record<string, string> = {};
+    const errs: { name?: string; phone?: string; type?: string } = {};
     if (v.name.trim().length < 2) errs.name = "Please enter your name.";
     if (!isValidIndianPhone(v.phone)) errs.phone = "Please enter a valid 10-digit mobile number.";
     if (!v.type) errs.type = "Please choose a category.";
@@ -89,7 +89,7 @@ function PartnerPage() {
   );
 }
 
-function F({ label, err, className, children }: { label: string; err?: string; className?: string; children: React.ReactNode }) {
+function F({ label, err, className, children }: { label: string; err?: string | undefined; className?: string; children: React.ReactNode }) {
   return (
     <label className={cn("block", className)}>
       <span className="mb-2 block text-sm font-semibold">{label}</span>

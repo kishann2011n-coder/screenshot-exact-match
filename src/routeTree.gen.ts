@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WeddingsRouteImport } from './routes/weddings'
 import { Route as ArtistsIndexRouteImport } from './routes/artists.index'
 import { Route as ArtistsSlugRouteImport } from './routes/artists.$slug'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
@@ -18,6 +19,11 @@ import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WeddingsRoute = WeddingsRouteImport.update({
+  id: '/weddings',
+  path: '/weddings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ArtistsIndexRoute = ArtistsIndexRouteImport.update({
@@ -43,6 +49,7 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/weddings': typeof WeddingsRoute
   '/artists/$slug': typeof ArtistsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/artists/': typeof ArtistsIndexRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/weddings': typeof WeddingsRoute
   '/artists/$slug': typeof ArtistsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/artists': typeof ArtistsIndexRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/weddings': typeof WeddingsRoute
   '/artists/$slug': typeof ArtistsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/artists/': typeof ArtistsIndexRoute
@@ -66,12 +75,24 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/artists/$slug' | '/services/$slug' | '/artists/' | '/services/'
+    | '/'
+    | '/weddings'
+    | '/artists/$slug'
+    | '/services/$slug'
+    | '/artists/'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/artists/$slug' | '/services/$slug' | '/artists' | '/services'
+  to:
+    | '/'
+    | '/weddings'
+    | '/artists/$slug'
+    | '/services/$slug'
+    | '/artists'
+    | '/services'
   id:
     | '__root__'
     | '/'
+    | '/weddings'
     | '/artists/$slug'
     | '/services/$slug'
     | '/artists/'
@@ -80,6 +101,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  WeddingsRoute: typeof WeddingsRoute
   ArtistsSlugRoute: typeof ArtistsSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ArtistsIndexRoute: typeof ArtistsIndexRoute
@@ -93,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/weddings': {
+      id: '/weddings'
+      path: '/weddings'
+      fullPath: '/weddings'
+      preLoaderRoute: typeof WeddingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/artists/': {
@@ -128,6 +157,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  WeddingsRoute: WeddingsRoute,
   ArtistsSlugRoute: ArtistsSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ArtistsIndexRoute: ArtistsIndexRoute,
